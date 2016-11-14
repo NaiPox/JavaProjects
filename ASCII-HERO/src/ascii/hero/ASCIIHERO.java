@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ASCIIHERO {
     /**
      * @param args the command line arguments
+     * @throws java.lang.InterruptedException
      */
     public static void main(String[] args)throws InterruptedException {
         // TODO code application logic here/
@@ -62,33 +63,57 @@ public class ASCIIHERO {
    }
    Thread.sleep(1000);
       String DIALOGUE2 =
-      ("YOU WILL NOW GET TAKEN TO THE CHARACTER CREATION MENU\n");
+      ("YOU WILL NOW GET TAKEN TO THE CLASS SELECTION MENU\n");
               for (int D2 = 0; D2 < DIALOGUE2.length(); D2++)
         {
         System.out.print(DIALOGUE2.charAt(D2));
         Thread.sleep(x);
               
     } 
-    System.out.println("CHOOSE THE CATEGORY YOU WISH TO CHANGE.\n"
-            + "TYPE AND ENTER 1 TO CHANGE THE HEAD.\n"
+    System.out.println("CHOOSE THE CLASS YOU WOULD LIKE TO PLAY AS.\n"
+            + "TYPE AND ENTER 1 TO PLAY AS THE MAGICIAN\n"
             + "TYPE AND ENTER 2 TO CHANGE THE TORSO.\n"
             + "TYPE AND ENTER 3 TO CHANGE THE LEGS\n");
     
       int CaC = Kinput.nextInt();
       if(CaC == 1)
       {
-      System.out.print("HEAD 1 (DEFAULT)\n");
-      String Head1 =
-              ( "+---------+\n"
-              + "|         |\n"
-              + "|        -+\n"
-              + "|         |\n"
-              + "|       ^-+\n"
-              + "+---------+\n");
+      System.out.print("MAGICIAN");
+      String Class1 =
+              ( "         +\n"
+              + "        +-+\n"
+              + "       +---+\n"
+              + "      +-----+\n"
+              + "     +-------+\n"
+              + "    +---------+\n"
+              + "  <------------->\n"
+              + "    |         |                  +------+\n"
+              + "    |       +-+                  |------|\n"
+              + "    |         |                  |------|\n"
+              + "    |      +-->                  |------|\n"
+              + "  <------------+                 +------+\n"
+              + " <--------------|              XXXXXXXX\n"
+              + "  |XXXXXXX------|            XX+-->XXX\n"
+              + "  |-^^-^^+XX+---+          XX+-->XXX\n"
+              + "  X-------->XXXXX        X+--+XXXX\n"
+              + "  XX|---------^--+     XX+-^XXX\n"
+              + "  <--XX+------------^+X+--+XX\n"
+              + "  |---XX|------------|X+XX\n"
+              + "  |---|X+------------+XXX\n"
+              + " <----|XXXXXXXXXX|| XX\n"
+              + " |----|X----------|X\n"
+              + " |----------------|\n"
+              + "+--------------------+\n"
+              + "|--------------------|\n"
+              + "|----------------------+\n"
+              + "|-----------------------^\n"
+              + "|-----------------------|\n"
+              + "|-----------------------|\n"
+              + "^-----------------------+\n");
       
-      for (int H1 = 0; H1 < Head1.length(); H1++)
+      for (int C1 = 0; C1 < Class1.length(); C1++)
       {
-      System.out.print(Head1.charAt(H1));
+      System.out.print(Class1.charAt(C1));
       Thread.sleep(25);
       
       }
@@ -97,8 +122,8 @@ public class ASCIIHERO {
       if(CaC == 2)
       {
       System.out.println("Head 2 (JACK)");
-      String Head2
-              ("");
+      String Head2;
+              
       }
       
       
