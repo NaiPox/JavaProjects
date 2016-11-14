@@ -59,7 +59,7 @@ public class ASCIIHERO {
    for (int i = 0; i < Character.length(); i++)
    {
    System.out.print(Character.charAt(i));
-   Thread.sleep(25);
+   Thread.sleep(20);
    }
    Thread.sleep(1000);
       String DIALOGUE2 =
@@ -72,13 +72,13 @@ public class ASCIIHERO {
     } 
     System.out.println("CHOOSE THE CLASS YOU WOULD LIKE TO PLAY AS.\n"
             + "TYPE AND ENTER 1 TO PLAY AS THE MAGICIAN\n"
-            + "TYPE AND ENTER 2 TO CHANGE THE TORSO.\n"
-            + "TYPE AND ENTER 3 TO CHANGE THE LEGS\n");
+            + "TYPE AND ENTER 2 TO PLAY AS THE COWBOY.\n"
+            + "TYPE AND ENTER 3 TO PLAY AS THE \n");
     
       int CaC = Kinput.nextInt();
       if(CaC == 1)
       {
-      System.out.print("MAGICIAN");
+      System.out.println("MAGICIAN");
       String Class1 =
               ( "         +\n"
               + "        +-+\n"
@@ -107,22 +107,27 @@ public class ASCIIHERO {
               + "|--------------------|\n"
               + "|----------------------+\n"
               + "|-----------------------^\n"
-              + "|-----------------------|\n"
-              + "|-----------------------|\n"
               + "^-----------------------+\n");
       
       for (int C1 = 0; C1 < Class1.length(); C1++)
       {
       System.out.print(Class1.charAt(C1));
-      Thread.sleep(25);
+      Thread.sleep(10);
       
       }
       }
     
       if(CaC == 2)
       {
-      System.out.println("Head 2 (JACK)");
-      String Head2;
+      System.out.println("COWBOY");
+      String Class2 = 
+              ("Placeholder"
+              + "placeholder");
+     for (int C2 = 0; C2 < Class2.length(); C2++)
+     {
+     System.out.print(Class2.charAt(C2));
+     
+     }
               
       }
       
