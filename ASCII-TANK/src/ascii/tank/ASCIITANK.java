@@ -14,7 +14,7 @@ public class ASCIITANK {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         //Defines Scanner
         Scanner Kinput = new Scanner(System.in);
@@ -38,7 +38,27 @@ public class ASCIITANK {
                 x = 50;
                 break;
         }
-      String Controls = ("Placeholder");
+      String Controls = ("CONTROLS\n"
+              + "On the left side of any given line of text which promts an action a number can be found which if typed and entered will promt said action. "
+              + "Example:\n"
+              + "1. Shoot Heavy Grenade\n"
+              + "2. Repair Tank\n"
+              + "Try it now: ");
+              int x2 = Kinput.nextInt();
+              if(x2 == 1)
+              {
+                  String SHG = ("You fired a Heavy Grenade!");
+                          for(int S = 0; S < SHG.length(); S++)
+                          {
+                              System.out.print(SHG.charAt(S));
+                              Thread.sleep(x);
+                          }
+              }
+              for(int Ctrl = 0; Ctrl < Controls.length(); Ctrl++)
+              {
+              System.out.print(Controls.charAt(Ctrl));
+              Thread.sleep(x);
+              }
               
       
     //Method that clears the console whenever Clear(); Is prompted in the code.
