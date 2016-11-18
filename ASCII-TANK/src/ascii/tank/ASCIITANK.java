@@ -21,7 +21,7 @@ public class ASCIITANK {
         Scanner Kinput = new Scanner(System.in);
         System.out.println("Welcome to ASCII-TANK\n"
                 + "Please choose your desired text speed (1 for slow , 2 for medium or 3 for fast): ");
-       int tSpeed, x, x2;
+       int tSpeed, x, i;
        try{
        tSpeed = Kinput.nextInt();
        } catch (java.util.InputMismatchException err)
@@ -61,9 +61,14 @@ public class ASCIITANK {
              System.out.print("Input: ");
              try
              {
-               x2 = Kinput.nextInt();
-              
-               if(x2 == 1)
+               i = Kinput.nextInt();
+               }
+             catch (java.util.InputMismatchException err2)
+            {
+            System.out.println("Still fucked."); 
+            }
+              i = Kinput.nextInt();
+               if(i == 1)
               {
                   String SHG = ("You fired a Heavy Grenade! ");
                           for(int S = 0; S < SHG.length(); S++)
@@ -76,11 +81,8 @@ public class ASCIITANK {
               {
                   System.out.print("Something went wrong.");
               }
-              }
-    catch (java.util.InputMismatchException err2)
-       {
-       System.out.println("Still fucked."); 
-       }
+              
+    
     }
        
               
