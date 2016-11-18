@@ -59,14 +59,7 @@ public class ASCIITANK {
               Thread.sleep(x);
               }
              System.out.print("Input: ");
-             try
-             {
-               i = Kinput.nextInt();
-               }
-             catch (java.util.InputMismatchException err2)
-            {
-            System.out.println("Still fucked."); 
-            }
+             
               i = Kinput.nextInt();
                if(i == 1)
               {
