@@ -129,7 +129,7 @@ public class ASCIITANK {
               }
               else
               {
-              System.out.print("You really did it this time."
+              System.out.print("You really did it this time.\n"
                       + "No more ASCII-TANK for you, game over.");
               Thread.sleep(3000);
               Clear();
