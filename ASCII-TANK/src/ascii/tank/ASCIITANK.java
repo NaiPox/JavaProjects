@@ -20,7 +20,7 @@ public class ASCIITANK {
         Scanner Kinput = new Scanner(System.in);
         System.out.println("Welcome to ASCII-TANK\n"
                 + "Please choose your desired text speed (1 for slow , 2 for medium or 3 for fast): ");
-       int tSpeed, x;
+       int tSpeed, x, x2;
        try{
        tSpeed = Kinput.nextInt();
        } catch (java.util.InputMismatchException err)
@@ -51,14 +51,15 @@ public class ASCIITANK {
               + "Example:\n"
               + "1. Shoot Heavy Grenade\n"
               + "2. Repair Tank\n"
-              + "Try it now:\n ");
+              + "Try it now!\n ");
               for(int Ctrl = 0; Ctrl < Controls.length(); Ctrl++)
               {
               System.out.print(Controls.charAt(Ctrl));
               Thread.sleep(x);
               }
-              int x2;
+             System.out.print("Input: ");
                x2 = Kinput.nextInt();
+              
                if(x2 == 1)
               {
                   String SHG = ("You fired a Heavy Grenade! ");
