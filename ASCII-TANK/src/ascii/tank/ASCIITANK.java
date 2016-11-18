@@ -21,8 +21,15 @@ public class ASCIITANK {
         System.out.println("Welcome to ASCII-TANK\n"
                 + "Please choose your desired text speed (1 for slow , 2 for medium or 3 for fast): ");
        int tSpeed, x;
+       try{
        tSpeed = Kinput.nextInt();
-        switch (tSpeed) {
+       } catch (java.util.InputMismatchException err)
+       {
+       tSpeed = 4;    
+       }
+       
+               
+       switch (tSpeed) {
             case 1:
                 x = 75;
                 break;
@@ -38,34 +45,37 @@ public class ASCIITANK {
                 x = 50;
                 break;
         }
+        
       String Controls = ("CONTROLS\n"
-              + "On the left side of any given line of text which promts an action a number can be found which if typed and entered will promt said action. "
+              + "On the left side of any given line of text which promts an action a number can be found which if typed and entered will promt said action.\n "
               + "Example:\n"
               + "1. Shoot Heavy Grenade\n"
               + "2. Repair Tank\n"
-              + "Try it now: ");
-              int x2 = Kinput.nextInt();
-              if(x2 == 1)
+              + "Try it now:\n ");
+              for(int Ctrl = 0; Ctrl < Controls.length(); Ctrl++)
               {
-                  String SHG = ("You fired a Heavy Grenade!");
+              System.out.print(Controls.charAt(Ctrl));
+              Thread.sleep(x);
+              }
+              int x2;
+               x2 = Kinput.nextInt();
+               if(x2 == 1)
+              {
+                  String SHG = ("You fired a Heavy Grenade! ");
                           for(int S = 0; S < SHG.length(); S++)
                           {
                               System.out.print(SHG.charAt(S));
                               Thread.sleep(x);
                           }
               }
-              for(int Ctrl = 0; Ctrl < Controls.length(); Ctrl++)
+              else
               {
-              System.out.print(Controls.charAt(Ctrl));
-              Thread.sleep(x);
+                  System.out.print("Something went wrong.");
+              }
               }
               
-      
-    //Method that clears the console whenever Clear(); Is prompted in the code.
-
-   
-}
-
+              
+//Method that clears the console whenever Clear(); Is prompted in the code.             
 public static void Clear()
     {
     for(int clear = 0; clear < 50; clear++)
@@ -74,3 +84,4 @@ public static void Clear()
     }
     }
 }
+
