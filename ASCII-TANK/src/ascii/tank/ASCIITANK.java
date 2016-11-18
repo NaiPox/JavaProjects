@@ -13,8 +13,9 @@ public class ASCIITANK {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException{
         // TODO code application logic here
         //Defines Scanner
         Scanner Kinput = new Scanner(System.in);
@@ -58,6 +59,8 @@ public class ASCIITANK {
               Thread.sleep(x);
               }
              System.out.print("Input: ");
+             try
+             {
                x2 = Kinput.nextInt();
               
                if(x2 == 1)
@@ -74,7 +77,12 @@ public class ASCIITANK {
                   System.out.print("Something went wrong.");
               }
               }
-              
+    catch (java.util.InputMismatchException err2)
+       {
+       System.out.println("Still fucked."); 
+       }
+    }
+       
               
 //Method that clears the console whenever Clear(); Is prompted in the code.             
 public static void Clear()
