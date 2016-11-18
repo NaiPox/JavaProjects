@@ -19,11 +19,13 @@ public class ASCIITANK {
         // TODO code application logic here
         //Defines Scanner
         Scanner Kinput = new Scanner(System.in);
-        System.out.println("Welcome to ASCII-TANK\n"
+        Clear();
+        System.out.print("Welcome to ASCII-TANK\n"
                 + "Please choose your desired text speed (1 for slow , 2 for medium or 3 for fast): ");
-       int tSpeed, x, i;
+       int tSpeed, x, Contr, MainM;
      tSpeed = 0;
-     i = 0;
+     Contr = 0;
+     MainM = 0;
        
        //try{
        if(Kinput.hasNextInt())
@@ -54,13 +56,12 @@ public class ASCIITANK {
                 x = 50;
                 break;
         }
-       
-      String Controls = ("CONTROLS\n"
-              + "To promt an action, type and enter the the number next to the left of it.\n "
-              + "Example:\n"
-              + "1. Shoot Heavy Grenade\n"
-              + "2. Repair Tank\n"
-              + "Try it now!\n ");
+       Clear();
+      String Controls = ("CONTROLS:\n"
+              + "To promt an action, type and enter the the number to the left of it.\n\n "
+              + "Example:\n\n"
+              + "1. Shoot High Explosive Grenade\n\n"
+              + "Try it now!\n\n ");
               for(int Ctrl = 0; Ctrl < Controls.length(); Ctrl++)
               {
               System.out.print(Controls.charAt(Ctrl));
@@ -71,23 +72,69 @@ public class ASCIITANK {
              System.out.print("Input: ");
              if(Kinput.hasNextInt())
        {
-              i = Kinput.nextInt();
+              Contr = Kinput.nextInt();
        }
-               if(i == 1)
+               if(Contr == 1)
               {
-                  String SHG = ("You fired a Heavy Grenade! ");
+                  String SHG = ("You fired a High Explosive Grenade! \n\n");
                           for(int S = 0; S < SHG.length(); S++)
                           {
                               System.out.print(SHG.charAt(S));
                               Thread.sleep(x);
                           }
+                          Thread.sleep(2000);
+                          Clear();
               }
               else
               {
-                  System.out.print("Something went wrong.");
+                  System.out.print("You exploded, game over. \n");
+                  Thread.sleep(2000);
+                          Clear();
+              }
+              String MainMenu =
+                      ("MAIN MENU\n\n"
+                      + "1. TEST\n");
+              for(int MM = 0; MM < MainMenu.length(); MM++)
+              {
+              System.out.print(MainMenu.charAt(MM));
+              Thread.sleep(x);
               }
               
-    
+              nextLine = Kinput.nextLine();
+              System.out.print("Input: \n");
+              if  (Kinput.hasNextInt())
+              {
+                  MainM = Kinput.nextInt();
+              }
+              if(MainM == 1)
+              {
+                  Clear();
+                String ATANK1 =
+                        ("THIS IS A TEST PRINT OF AN ASCII-TANK\n"
+                        + "     +---------+\n"
+                        + "   +-------------------------+\n"
+                        + "   |-------------------------+\n"
+                        + "+------------------|\n"
+                        + "|------------------|\n"
+                        + "|-| ASCII-TANK 1 |-|\n"
+                        + "|------------------|\n"
+                        + "|X+->X+->X+->X->X-v+\n"
+                        + "XX^-X<-+X<-+X<+X<-+X\n");  
+                
+                for(int AT1 = 0; AT1 < ATANK1.length(); AT1++ )
+                {
+                 System.out.print(ATANK1.charAt(AT1));
+                 Thread.sleep(20);
+                }
+              }
+              else
+              {
+              System.out.print("You really did it this time."
+                      + "No more ASCII-TANK for you, game over.");
+              Thread.sleep(3000);
+              Clear();
+              }
+              
     }
        
               
