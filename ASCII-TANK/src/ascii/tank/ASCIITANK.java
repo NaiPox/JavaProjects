@@ -22,14 +22,22 @@ public class ASCIITANK {
         System.out.println("Welcome to ASCII-TANK\n"
                 + "Please choose your desired text speed (1 for slow , 2 for medium or 3 for fast): ");
        int tSpeed, x, i;
-       try{
-       tSpeed = Kinput.nextInt();
-       } catch (java.util.InputMismatchException err)
+     tSpeed = 0;
+     i = 0;
+       
+       //try{
+       if(Kinput.hasNextInt())
        {
-       tSpeed = 4;    
+       tSpeed = Kinput.nextInt();
        }
        
-               
+       //} 
+       //catch (java.util.InputMismatchException err)
+       //{
+       //tSpeed = 4;    
+       //}
+       
+      
        switch (tSpeed) {
             case 1:
                 x = 75;
@@ -46,9 +54,9 @@ public class ASCIITANK {
                 x = 50;
                 break;
         }
-        
+       
       String Controls = ("CONTROLS\n"
-              + "On the left side of any given line of text which promts an action a number can be found which if typed and entered will promt said action.\n "
+              + "To promt an action, type and enter the the number next to the left of it.\n "
               + "Example:\n"
               + "1. Shoot Heavy Grenade\n"
               + "2. Repair Tank\n"
@@ -58,9 +66,13 @@ public class ASCIITANK {
               System.out.print(Controls.charAt(Ctrl));
               Thread.sleep(x);
               }
+        String nextLine;
+        nextLine = Kinput.nextLine();
              System.out.print("Input: ");
-             
+             if(Kinput.hasNextInt())
+       {
               i = Kinput.nextInt();
+       }
                if(i == 1)
               {
                   String SHG = ("You fired a Heavy Grenade! ");
