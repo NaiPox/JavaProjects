@@ -17,13 +17,14 @@ public class Opgave11
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    final int Limit = 300000;
+    
+    final int Limit = 1000;
     int sum_mhul = 0, sum_uhul = 0;
     
     System.out.println("\nMønter produceres af Kjield. !!!WIP!!!");
     MoentHul nyMønt = new MoentHul();
     
-        for(int i = 1; i <=Limit; i++)
+        for(int i = 1; i <= Limit; i++)
         {
         nyMønt.Kjield();
         
