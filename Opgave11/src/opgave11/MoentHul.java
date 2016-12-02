@@ -4,56 +4,49 @@
  * and open the template in the editor.
  */
 package opgave11;
-import java.util.Scanner;
-        
+
 /**
  *
- * @author EUC
+ * @author Lennard Martensen Thomsen
  */
 
 public class MoentHul {
-    
-Scanner Kinput = new Scanner(System.in);
-
-    private boolean hul = false;
+    public final int Uhul = 0;
+    public final int Hul = 1;
+    private int LavHul;
     
     public void Moent()        
         {
-            valg();
-        System.out.println("Jeg er en mønt uden hul."+this);
+          System.out.println("Mønt med eller uden hul skabes om et øjeblik.");
+          Kjield();
         }
-    
-    public void Moent(String hul)
-        {
-            valg();
-        System.out.println("Jeg er en mønt med hul i."+this);
-        }
-    
-    public void valg()
-        {
-            int v;
-        v = Kinput.nextInt();
-        
-            if(v == 1)
-            {
-            hul = true;
-            }
-            else if(v == 2)
-                {
-                hul = false;
-                }
-            else
-            {
-            hul = false;
-            }
-        }
-
-public String toString()
+      //Kjield er den arbejder som laver hul i mønterne!
+    public void Kjield()
     {
-    String HulEllerEj, txt;
-    
+    LavHul = (int) (Math.random()*2);
     }
+    
+   public int getLavHul()
+   {
+    return LavHul;   
+   }
 
+   
+    @Override
+   public String toString()
+           {
+               String LavHulName, txt;
+               if (LavHul == Uhul)
+               {
+                LavHulName = "ikke hul i";
+               }
+                else
+                {
+                 LavHulName = "hul i";
+                }
+               txt = "Jeg er en mønt og har lige nu"+LavHulName;
+                 return txt;
+           }
 }
 
 
