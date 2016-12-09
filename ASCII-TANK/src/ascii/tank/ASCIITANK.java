@@ -19,11 +19,11 @@ public class ASCIITANK
     public static void main(String[] args) throws InterruptedException
     {
         // TODO code application logic here
-        //Defines Scanner
+        //Scanner defineres
         Scanner Kinput = new Scanner(System.in);
-        
+        //Klar metoden kaldes
         Clear();
-        
+        //Introduktion til programmet
         System.out.print("Welcome to ASCII-TANK\n"
         + "Please choose your desired text speed (1 for slow , 2 for medium or 3 for fast): ");
         
@@ -58,7 +58,7 @@ public class ASCIITANK
                 x = 50;
                 break;
         }
-       
+       //Clear metode til at lave en blank og klar skærm.
        Clear();
        
       String Controls = 
