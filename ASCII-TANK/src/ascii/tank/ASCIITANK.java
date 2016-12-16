@@ -58,7 +58,7 @@ public class ASCIITANK
                 x = 50;
                 break;
         }
-       //Clear metode til at lave en blank og klar skærm.
+       //Clear metode kaldt
        Clear();
        
       String Controls = 
@@ -68,6 +68,7 @@ public class ASCIITANK
               + "1. Shoot High Explosive Grenade\n\n"
               + "Try it now!\n\n ");
       
+              //Forløkke som laver intervalprint af bogstaver
               for(int Ctrl = 0; Ctrl < Controls.length(); Ctrl++)
               {
               System.out.print(Controls.charAt(Ctrl));
@@ -154,7 +155,7 @@ public class ASCIITANK
     }
        
               
-//Method that clears the console whenever Clear(); Is prompted in the code.             
+//Metode der tømmer skærmen for tekst når Clear(); metoden bliver kaldt i koden           
 public static void Clear()
     {
     for(int clear = 0; clear < 50; clear++)
