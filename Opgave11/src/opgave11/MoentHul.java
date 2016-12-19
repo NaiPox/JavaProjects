@@ -46,7 +46,7 @@ public class MoentHul {
                 {
                  LavHulName = " hul i";
                 }
-               txt = "Jeg er en mønt og har lige nu"+LavHulName;
+               txt = "Den sidste mønt Kjield lavede har lige nu"+LavHulName;
                  return txt;
            }
 }
