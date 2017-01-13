@@ -7,7 +7,7 @@ package opgave11;
 
 /**
  *
- * @author EUC
+ * @author Lennard Martensen Thomsen
  */
 public class Opgave11 
 {

@@ -1,0 +1,91 @@
+[23:58:17] [Server console handler/ERROR]: Exception handling console input
+java.io.IOException: Handlen er ikke gyldig
+	at java.io.FileInputStream.readBytes(Native Method) ~[?:1.8.0_101]
+	at java.io.FileInputStream.read(Unknown Source) ~[?:1.8.0_101]
+	at java.io.BufferedInputStream.read1(Unknown Source) ~[?:1.8.0_101]
+	at java.io.BufferedInputStream.read(Unknown Source) ~[?:1.8.0_101]
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[?:1.8.0_101]
+	at sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[?:1.8.0_101]
+	at sun.nio.cs.StreamDecoder.read(Unknown Source) ~[?:1.8.0_101]
+	at java.io.InputStreamReader.read(Unknown Source) ~[?:1.8.0_101]
+	at java.io.BufferedReader.fill(Unknown Source) ~[?:1.8.0_101]
+	at java.io.BufferedReader.readLine(Unknown Source) ~[?:1.8.0_101]
+	at java.io.BufferedReader.readLine(Unknown Source) ~[?:1.8.0_101]
+	at lh$2.run(SourceFile:95) [minecraft_server.1.11.2.jar:?]
+[23:58:17] [Server thread/INFO]: Starting minecraft server version 1.11.2
+[23:58:17] [Server thread/INFO]: Loading properties
+[23:58:18] [Server thread/INFO]: Default game type: SURVIVAL
+[23:58:18] [Server thread/INFO]: Generating keypair
+[23:58:18] [Server thread/INFO]: Starting Minecraft server on *:25565
+[23:58:18] [Server thread/INFO]: Using default channel type
+[23:58:18] [Server thread/WARN]: Failed to load user banlist: 
+java.io.FileNotFoundException: banned-players.json (Den angivne fil blev ikke fundet)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_101]
+	at java.io.FileInputStream.open(Unknown Source) ~[?:1.8.0_101]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_101]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[minecraft_server.1.11.2.jar:?]
+	at mx.g(SourceFile:136) ~[minecraft_server.1.11.2.jar:?]
+	at lg.z(SourceFile:99) [minecraft_server.1.11.2.jar:?]
+	at lg.<init>(SourceFile:25) [minecraft_server.1.11.2.jar:?]
+	at lh.j(SourceFile:186) [minecraft_server.1.11.2.jar:?]
+	at net.minecraft.server.MinecraftServer.run(SourceFile:436) [minecraft_server.1.11.2.jar:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_101]
+[23:58:18] [Server thread/WARN]: Failed to load ip banlist: 
+java.io.FileNotFoundException: banned-ips.json (Den angivne fil blev ikke fundet)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_101]
+	at java.io.FileInputStream.open(Unknown Source) ~[?:1.8.0_101]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_101]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[minecraft_server.1.11.2.jar:?]
+	at mx.g(SourceFile:136) ~[minecraft_server.1.11.2.jar:?]
+	at lg.y(SourceFile:91) [minecraft_server.1.11.2.jar:?]
+	at lg.<init>(SourceFile:27) [minecraft_server.1.11.2.jar:?]
+	at lh.j(SourceFile:186) [minecraft_server.1.11.2.jar:?]
+	at net.minecraft.server.MinecraftServer.run(SourceFile:436) [minecraft_server.1.11.2.jar:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_101]
+[23:58:18] [Server thread/WARN]: Failed to load operators list: 
+java.io.FileNotFoundException: ops.json (Den angivne fil blev ikke fundet)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_101]
+	at java.io.FileInputStream.open(Unknown Source) ~[?:1.8.0_101]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_101]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[minecraft_server.1.11.2.jar:?]
+	at mx.g(SourceFile:136) ~[minecraft_server.1.11.2.jar:?]
+	at lg.A(SourceFile:107) [minecraft_server.1.11.2.jar:?]
+	at lg.<init>(SourceFile:29) [minecraft_server.1.11.2.jar:?]
+	at lh.j(SourceFile:186) [minecraft_server.1.11.2.jar:?]
+	at net.minecraft.server.MinecraftServer.run(SourceFile:436) [minecraft_server.1.11.2.jar:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_101]
+[23:58:18] [Server thread/WARN]: Failed to load white-list: 
+java.io.FileNotFoundException: whitelist.json (Den angivne fil blev ikke fundet)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_101]
+	at java.io.FileInputStream.open(Unknown Source) ~[?:1.8.0_101]
+	at java.io.FileInputStream.<init>(Unknown Source) ~[?:1.8.0_101]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[minecraft_server.1.11.2.jar:?]
+	at mx.g(SourceFile:136) ~[minecraft_server.1.11.2.jar:?]
+	at lg.C(SourceFile:123) [minecraft_server.1.11.2.jar:?]
+	at lg.<init>(SourceFile:30) [minecraft_server.1.11.2.jar:?]
+	at lh.j(SourceFile:186) [minecraft_server.1.11.2.jar:?]
+	at net.minecraft.server.MinecraftServer.run(SourceFile:436) [minecraft_server.1.11.2.jar:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_101]
+[23:58:18] [Server thread/INFO]: Preparing level "world"
+[23:58:18] [Server thread/INFO]: Preparing start region for level 0
+[23:58:20] [Server thread/INFO]: Preparing spawn area: 7%
+[23:58:21] [Server thread/INFO]: Preparing spawn area: 13%
+[23:58:22] [Server thread/INFO]: Preparing spawn area: 19%
+[23:58:23] [Server thread/INFO]: Preparing spawn area: 29%
+[23:58:24] [Server thread/INFO]: Preparing spawn area: 39%
+[23:58:25] [Server thread/INFO]: Preparing spawn area: 49%
+[23:58:26] [Server thread/INFO]: Preparing spawn area: 62%
+[23:58:27] [Server thread/INFO]: Preparing spawn area: 74%
+[23:58:28] [Server thread/INFO]: Preparing spawn area: 88%
+[23:58:28] [Server thread/INFO]: Done (10,535s)! For help, type "help" or "?"
+[23:58:34] [Server thread/INFO]: Stopping the server
+[23:58:34] [Server thread/INFO]: Stopping server
+[23:58:34] [Server thread/INFO]: Saving players
+[23:58:34] [Server thread/INFO]: Saving worlds
+[23:58:34] [Server thread/INFO]: Saving chunks for level 'world'/Overworld
+[23:58:35] [Server thread/INFO]: Saving chunks for level 'world'/Nether
+[23:58:35] [Server thread/INFO]: Saving chunks for level 'world'/The End
+[23:58:35] [Server Shutdown Thread/INFO]: Stopping server
+[23:58:35] [Server Shutdown Thread/INFO]: Saving players
+[23:58:35] [Server Shutdown Thread/INFO]: Saving worlds
+[23:58:35] [Server Shutdown Thread/INFO]: Saving chunks for level 'world'/Overworld
