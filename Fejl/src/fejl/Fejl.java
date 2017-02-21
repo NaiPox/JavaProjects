@@ -16,6 +16,8 @@ public class Fejl {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        double x =5;
+        System.out.print(x);
         
     }
     
