@@ -3,19 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package graphics;
 
+import java.awt.Frame;
+import javax.swing.JFrame;
 /**
  *
- * @author EUC
+ * @author LMT
  */
-public class Graphics {
+public class Graphics extends JFrame {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         // TODO code application logic here
-    }
+    Frame MainFrame = new Frame();
     
+    }
+         
 }
