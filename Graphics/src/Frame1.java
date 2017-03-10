@@ -8,6 +8,8 @@
  *
  * @author EUC
  */
+import java.util.Scanner;
+import javax.swing.JFrame;
 public class Frame1 extends javax.swing.JFrame {
 
     /**
@@ -32,8 +34,11 @@ public class Frame1 extends javax.swing.JFrame {
         TA1 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         TA2 = new javax.swing.JTextArea();
+        Krypter = new javax.swing.JButton();
+        Dekrypter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Krypto");
 
         jLabel1.setText("Input:");
 
@@ -47,6 +52,20 @@ public class Frame1 extends javax.swing.JFrame {
         TA2.setRows(5);
         jScrollPane3.setViewportView(TA2);
 
+        Krypter.setText("Krypter");
+        Krypter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KrypterActionPerformed(evt);
+            }
+        });
+
+        Dekrypter.setText("Dekrypter");
+        Dekrypter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DekrypterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,6 +77,10 @@ public class Frame1 extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Krypter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Dekrypter))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jScrollPane3))
                 .addContainerGap(148, Short.MAX_VALUE))
@@ -77,13 +100,36 @@ public class Frame1 extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Krypter)
+                    .addComponent(Dekrypter))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void KrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KrypterActionPerformed
+        // TODO add your handling code here:
+        String T1 = TA1.getText();
+        System.out.println(T1.length());
+        int T1L = T1.length();
+        String T1LS = Integer.toString(T1L);
+        TA2.setText(T1LS);
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_KrypterActionPerformed
+
+    private void DekrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DekrypterActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_DekrypterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +167,8 @@ public class Frame1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Dekrypter;
+    private javax.swing.JButton Krypter;
     private javax.swing.JTextArea TA1;
     private javax.swing.JTextArea TA2;
     private javax.swing.JLabel jLabel1;
