@@ -8,8 +8,16 @@
  *
  * @author EUC
  */
-import java.util.Scanner;
-import javax.swing.JFrame;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Frame1 extends javax.swing.JFrame {
 
     /**
@@ -18,7 +26,6 @@ public class Frame1 extends javax.swing.JFrame {
     public Frame1() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,21 +121,42 @@ public class Frame1 extends javax.swing.JFrame {
 
     private void KrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KrypterActionPerformed
         // TODO add your handling code here:
+        int x = 0;
         String T1 = TA1.getText();
-        System.out.println(T1.length());
+        //System.out.println(T1.length());
         int T1L = T1.length();
-        String T1LS = Integer.toString(T1L);
-        TA2.setText(T1LS);
-        
-        
-        
-        
-        
+        //String T1LS = Integer.toString(T1L);
+        //TA2.setText(T1LS);
+           
+                
+         try( PrintWriter out = new PrintWriter( "D:/JAVA/Test.txt") )
+            {      
+        for (int i = 0; i<T1L; i++)
+        {
+           x = i + (int) (Math.random() * 99);
+           System.out.println(x);
+           out.println(x);
+        }
+            } catch (FileNotFoundException ex)
+                {
+                  Logger.getLogger(Frame1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+          
     }//GEN-LAST:event_KrypterActionPerformed
 
     private void DekrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DekrypterActionPerformed
         // TODO add your handling code here:
-        
+        Charset charset = Charset.forName("UTF-8");
+        Path file = Paths.get("D:/JAVA/Test.txt");
+        try (BufferedReader reader = Files.newBufferedReader(file, charset)){
+            String line = null;
+            while ((line = reader.readLine()) != null){
+                System.out.println(line);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+    }
+    
     }//GEN-LAST:event_DekrypterActionPerformed
 
     /**
@@ -165,7 +193,6 @@ public class Frame1 extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dekrypter;
     private javax.swing.JButton Krypter;
