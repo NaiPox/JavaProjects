@@ -8,23 +8,31 @@
  *
  * @author EUC
  */
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public class Frame1 extends javax.swing.JFrame {
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
+public class Frame1 extends javax.swing.JFrame {
+    // Tillader korresponerende indexer
+    private HashMap<Character,Integer> ValuesMap;
+    private List<Integer> EncryptedText;
+    
     /**
      * Creates new form Frame1
      */
     public Frame1() {
         initComponents();
+        ValuesMap = new HashMap<>();
+        EncryptedText = new ArrayList<>();
+        
+        TA2.setEditable(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,41 +129,88 @@ public class Frame1 extends javax.swing.JFrame {
 
     private void KrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KrypterActionPerformed
         // TODO add your handling code here:
-        int x = 0;
-        String T1 = TA1.getText();
-        //System.out.println(T1.length());
-        int T1L = T1.length();
-        //String T1LS = Integer.toString(T1L);
-        //TA2.setText(T1LS);
-           
-                
-         try( PrintWriter out = new PrintWriter( "D:/JAVA/Test.txt") )
-            {      
-        for (int i = 0; i<T1L; i++)
+        String UserInput = TA1.getText();
+        
+        for(int i = 0; i < UserInput.length(); i++)
         {
-           x = i + (int) (Math.random() * 99);
-           System.out.println(x);
-           out.println(x);
-        }
-            } catch (FileNotFoundException ex)
+            //Validerer at en angivet Char er en key i ValuesMap
+            if(!ValuesMap.containsKey(UserInput.charAt(i)))
+            {
+                //Tilegner værdier til Chars
+                Random rand = new Random();
+                while(true)
                 {
-                  Logger.getLogger(Frame1.class.getName()).log(Level.SEVERE, null, ex);
+                   int RandomizedValue = rand.nextInt(Integer.MAX_VALUE);
+                   if(!ValuesMap.containsValue(RandomizedValue)){
+                    ValuesMap.put(UserInput.charAt(i), RandomizedValue);
+                    break;   
+                   }
                 }
-          
+                
+            }
+        }
+        //Validerer at der ikke forekommer en null værdi og kaster en undtagelse, hvis tilfældet skulle ske.
+        for(int i = 0; i < UserInput.length(); i++)
+        {
+            int value = (ValuesMap.get(UserInput.charAt(i)) != null ? ValuesMap.get(UserInput.charAt(i)) : -1);
+            
+            if(value == -1) throw new NullPointerException("Der blev fundet en ugyldig værdi i ValuesMap");
+            //Hvis ikke der er en null værdi, så taster den værdien ind i variablen EncryptedText.
+            EncryptedText.add(value);
+        }
+        //Vi kører igennem for hvert index med en integer og tilføjer den til outputboksen.
+        for(Object i : EncryptedText.toArray())
+        {
+           TA2.append(i + " ");
+        }
+       
+        try {
+            System.out.println("Skriver tabel hos: " + System.getProperty("user.dir") + "\\ValueTable.enc");
+            //FileOutputStream initialiseres, så vi har en forbindelse til filens lokalisation.
+            FileOutputStream file = new FileOutputStream(System.getProperty("user.dir") + "\\ValueTable.enc");
+            //ObjectOutputStream initialiseres, så vi kan skrive til vores fil, dvs. at ObjectOutputStream indsætter data.
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            //Programmet skriver vores output objekt ind med alt den data der er til stede i ValuesMap.
+            output.writeObject(ValuesMap);
+            output.close(); //Forbindelse lukkes.
+            file.close();   //Filen lukkes.
+        }catch (IOException ex){} //I tilfælde af uforudsete fejl, er der oprettet en undtagelseshåndtering. 
+        
     }//GEN-LAST:event_KrypterActionPerformed
 
     private void DekrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DekrypterActionPerformed
         // TODO add your handling code here:
-        Charset charset = Charset.forName("UTF-8");
-        Path file = Paths.get("D:/JAVA/Test.txt");
-        try (BufferedReader reader = Files.newBufferedReader(file, charset)){
-            String line = null;
-            while ((line = reader.readLine()) != null){
-                System.out.println(line);
+        File encyptionTable = new File(System.getProperty("user.dir") + "\\ValueTable.enc");
+        
+        if(encyptionTable.exists()){
+            try {
+                FileInputStream file = new FileInputStream(encyptionTable);
+                ObjectInputStream input = new ObjectInputStream(file);
+                
+                ValuesMap = (HashMap<Character, Integer>)input.readObject();
+                
+                input.close();
+                file.close();
+                
+            }catch(IOException | ClassNotFoundException ex){
+            
             }
-        }catch(IOException e){
-            e.printStackTrace();
-    }
+        }
+        
+        String[] UserInput = TA1.getText().split(" ");
+        
+        
+        TA2.setText(null);
+        for(int i = 0; i < UserInput.length; i++)
+        {
+            int value = Integer.parseInt(UserInput[i]);
+            
+            ValuesMap.forEach((k,v)-> {
+                if(v == value){
+                    TA2.append(k.toString());
+                }
+            });
+        }
     
     }//GEN-LAST:event_DekrypterActionPerformed
 
