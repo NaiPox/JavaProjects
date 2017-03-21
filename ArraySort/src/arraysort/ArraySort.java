@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author Lennard Martensen Thomsen
  */
-public class ArraySort {
+    public class ArraySort {
     /**
      * @param args the command line arguments
      */
