@@ -51,6 +51,7 @@ public class Frame1 extends javax.swing.JFrame {
         TA2 = new javax.swing.JTextArea();
         Krypter = new javax.swing.JButton();
         Dekrypter = new javax.swing.JButton();
+        Clr = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Krypto");
@@ -81,6 +82,13 @@ public class Frame1 extends javax.swing.JFrame {
             }
         });
 
+        Clr.setText("Ryd");
+        Clr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClrActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,14 +99,20 @@ public class Frame1 extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(Krypter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Dekrypter))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
-                .addContainerGap(148, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(Dekrypter)
+                        .addGap(18, 18, 18)
+                        .addComponent(Clr)
+                        .addGap(80, 80, 80))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +134,8 @@ public class Frame1 extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Krypter)
-                    .addComponent(Dekrypter))
+                    .addComponent(Dekrypter)
+                    .addComponent(Clr))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -141,28 +156,29 @@ public class Frame1 extends javax.swing.JFrame {
                 while(true)
                 {
                    int RandomizedValue = rand.nextInt(Integer.MAX_VALUE);
-                   if(!ValuesMap.containsValue(RandomizedValue)){
-                    ValuesMap.put(UserInput.charAt(i), RandomizedValue);
-                    break;   
-                   }
+                   if(!ValuesMap.containsValue(RandomizedValue))
+                        {
+                        ValuesMap.put(UserInput.charAt(i), RandomizedValue);
+                        break;   
+                        }
                 }
                 
             }
         }
         //Validerer at der ikke forekommer en null værdi og kaster en undtagelse, hvis tilfældet skulle ske.
         for(int i = 0; i < UserInput.length(); i++)
-        {
-            int value = (ValuesMap.get(UserInput.charAt(i)) != null ? ValuesMap.get(UserInput.charAt(i)) : -1);
+            {
+                int value = (ValuesMap.get(UserInput.charAt(i)) != null ? ValuesMap.get(UserInput.charAt(i)) : -1);
             
-            if(value == -1) throw new NullPointerException("Der blev fundet en ugyldig værdi i ValuesMap");
-            //Hvis ikke der er en null værdi, så taster den værdien ind i variablen EncryptedText.
-            EncryptedText.add(value);
-        }
+                if(value == -1) throw new NullPointerException("Der blev fundet en ugyldig værdi i ValuesMap");
+                //Hvis ikke der er en null værdi, så taster den værdien ind i variablen EncryptedText.
+                EncryptedText.add(value);
+            }
         //Vi kører igennem for hvert index med en integer og tilføjer den til outputboksen.
         for(Object i : EncryptedText.toArray())
-        {
-           TA2.append(i + " ");
-        }
+            {
+                TA2.append(i + " ");
+            }
        
         try {
             System.out.println("Skriver tabel hos: " + System.getProperty("user.dir") + "\\ValueTable.enc");
@@ -174,12 +190,14 @@ public class Frame1 extends javax.swing.JFrame {
             output.writeObject(ValuesMap);
             output.close(); //Forbindelse lukkes.
             file.close();   //Filen lukkes.
-        }catch (IOException ex){} //I tilfælde af uforudsete fejl, er der oprettet en undtagelseshåndtering. 
+            }catch (IOException ex){} //I tilfælde af uforudsete fejl, er der oprettet en undtagelseshåndtering. 
         
     }//GEN-LAST:event_KrypterActionPerformed
 
     private void DekrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DekrypterActionPerformed
         // TODO add your handling code here:
+        
+        //Skaber en variabel så man har adgang til den ønskede sti.
         File encyptionTable = new File(System.getProperty("user.dir") + "\\ValueTable.enc");
         
         if(encyptionTable.exists()){
@@ -192,10 +210,11 @@ public class Frame1 extends javax.swing.JFrame {
                 input.close();
                 file.close();
                 
-            }catch(IOException | ClassNotFoundException ex){
-            
-            }
-        }
+                }catch(IOException | ClassNotFoundException ex){
+                }
+             
+                
+                                   }
         
         String[] UserInput = TA1.getText().split(" ");
         
@@ -206,13 +225,20 @@ public class Frame1 extends javax.swing.JFrame {
             int value = Integer.parseInt(UserInput[i]);
             
             ValuesMap.forEach((k,v)-> {
-                if(v == value){
+                if(v == value)
+                {
                     TA2.append(k.toString());
                 }
-            });
+                                       });
         }
     
     }//GEN-LAST:event_DekrypterActionPerformed
+
+    private void ClrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClrActionPerformed
+        // TODO add your handling code here:
+        TA1.setText(null);
+        TA2.setText(null);
+    }//GEN-LAST:event_ClrActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,6 +275,7 @@ public class Frame1 extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Clr;
     private javax.swing.JButton Dekrypter;
     private javax.swing.JButton Krypter;
     private javax.swing.JTextArea TA1;
