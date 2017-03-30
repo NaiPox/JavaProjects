@@ -8,6 +8,7 @@
  *
  * @author EUC
  */
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,12 +19,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Frame1 extends javax.swing.JFrame {
+
     // Tillader korresponerende indexer
-    private HashMap<Character,Integer> ValuesMap;
+    private HashMap<Character, Integer> ValuesMap;
     private List<Integer> EncryptedText;
-    
+
     /**
      * Creates new form Frame1
      */
@@ -31,10 +35,11 @@ public class Frame1 extends javax.swing.JFrame {
         initComponents();
         ValuesMap = new HashMap<>();
         EncryptedText = new ArrayList<>();
-        
+
         TA2.setEditable(false);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +58,10 @@ public class Frame1 extends javax.swing.JFrame {
         Krypter = new javax.swing.JButton();
         Dekrypter = new javax.swing.JButton();
         Clr = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TA3 = new javax.swing.JTextArea();
+        Browse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Krypto");
@@ -91,6 +100,19 @@ public class Frame1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Navngiv / vælg fil:");
+
+        TA3.setColumns(20);
+        TA3.setRows(5);
+        jScrollPane1.setViewportView(TA3);
+
+        Browse.setText("Se Filer");
+        Browse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BrowseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,20 +123,27 @@ public class Frame1 extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                             .addComponent(jScrollPane3))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(Krypter)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Dekrypter)
-                        .addGap(18, 18, 18)
-                        .addComponent(Clr)
-                        .addGap(80, 80, 80))))
+                        .addGap(11, 11, 11)
+                        .addComponent(Clr)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Browse)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +154,12 @@ public class Frame1 extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -137,7 +171,8 @@ public class Frame1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Krypter)
                     .addComponent(Dekrypter)
-                    .addComponent(Clr))
+                    .addComponent(Clr)
+                    .addComponent(Browse))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -147,102 +182,108 @@ public class Frame1 extends javax.swing.JFrame {
     private void KrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KrypterActionPerformed
         // TODO add your handling code here:
         String UserInput = TA1.getText();
-        
-        for(int i = 0; i < UserInput.length(); i++)
-        {
+
+        for (int i = 0; i < UserInput.length(); i++) {
             //Validerer at en angivet Char er en key i ValuesMap
-            if(!ValuesMap.containsKey(UserInput.charAt(i)))
-            {
+            if (!ValuesMap.containsKey(UserInput.charAt(i))) {
                 //Tilegner tilfældige værdier til Chars i ValuesMap 
                 Random rand = new Random();
-                while(true)
-                {
-                   int RandomizedValue = rand.nextInt(Integer.MAX_VALUE);
-                   if(!ValuesMap.containsValue(RandomizedValue))
-                        {
+                while (true) {
+                    int RandomizedValue = rand.nextInt(Integer.MAX_VALUE);
+                    if (!ValuesMap.containsValue(RandomizedValue)) {
                         ValuesMap.put(UserInput.charAt(i), RandomizedValue);
-                        break;   
-                        }
+                        break;
+                    }
                 }
-                
+
             }
         }
         //Validerer at der ikke forekommer en null værdi og kaster en undtagelse, hvis tilfældet skulle ske.
-        for(int i = 0; i < UserInput.length(); i++)
-            {
-                int value = (ValuesMap.get(UserInput.charAt(i)) != null ? ValuesMap.get(UserInput.charAt(i)) : -1);
-            
-                if(value == -1) throw new NullPointerException("Der blev fundet en ugyldig værdi i ValuesMap");
-                //Hvis ikke der er en null værdi, så taster den værdien ind i variablen EncryptedText.
-                EncryptedText.add(value);
+        for (int i = 0; i < UserInput.length(); i++) {
+            int value = (ValuesMap.get(UserInput.charAt(i)) != null ? ValuesMap.get(UserInput.charAt(i)) : -1);
+
+            if (value == -1) {
+                throw new NullPointerException("Der blev fundet en ugyldig værdi i ValuesMap");
             }
+            //Hvis ikke der er en null værdi, så taster den værdien ind i variablen EncryptedText.
+            EncryptedText.add(value);
+        }
         //Vi kører igennem for hvert index med en integer og tilføjer den til outputboksen.
-        for(Object i : EncryptedText.toArray())
-            {
-                TA2.append(i + " ");
-            }
-       
+        for (Object i : EncryptedText.toArray()) {
+            TA2.append(i + " ");
+        }
+
         try {
-            System.out.println("Skriver tabel hos: " + System.getProperty("user.dir") + "\\ValueTable.enc");
+            System.out.println("Skriver tabel hos: " + System.getProperty("user.dir") + "\\" + TA3.getText() + ".enc");
             //FileOutputStream initialiseres, så vi har en forbindelse til filens lokalisation.
-            FileOutputStream file = new FileOutputStream(System.getProperty("user.dir") + "\\ValueTable.enc");
+            FileOutputStream file = new FileOutputStream(System.getProperty("user.dir") + "\\" + TA3.getText() + ".enc");
             //ObjectOutputStream initialiseres, så vi kan skrive til vores fil, dvs. at ObjectOutputStream indsætter data.
             ObjectOutputStream output = new ObjectOutputStream(file);
             //Programmet skriver vores output objekt ind med alt den data der er til stede i ValuesMap.
             output.writeObject(ValuesMap);
             output.close(); //Forbindelse lukkes.
             file.close();   //Filen lukkes.
-            }catch (IOException ex){} //I tilfælde af uforudsete fejl, er der oprettet en undtagelseshåndtering. 
-        
+        } catch (IOException ex) {
+        } //I tilfælde af uforudsete fejl, er der oprettet en undtagelseshåndtering. 
+
     }//GEN-LAST:event_KrypterActionPerformed
 
     private void DekrypterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DekrypterActionPerformed
         // TODO add your handling code here:
-        
+
         //Skaber en variabel så man har adgang til den ønskede sti.
-        File encyptionTable = new File(System.getProperty("user.dir") + "\\ValueTable.enc");
-        
-        if(encyptionTable.exists()){
+        File encyptionTable = new File(System.getProperty("user.dir") + "\\" + TA3.getText() + ".enc");
+
+        if (encyptionTable.exists()) {
             try {
                 //Se kommentar linje 185 og 187.
                 FileInputStream file = new FileInputStream(encyptionTable);
                 ObjectInputStream input = new ObjectInputStream(file);
-                
-                ValuesMap = (HashMap<Character, Integer>)input.readObject();
+
+                ValuesMap = (HashMap<Character, Integer>) input.readObject();
                 //Se 191+192
                 input.close();
                 file.close();
                 //Programmet håndterer potentielle undtagelser  for IO eller ClaassNotFound.
-                }catch(IOException | ClassNotFoundException ex){
-                 TA2.append("Det du ønsker at dekryptere eksisterer ikke.");
-                }
-             
-                
-                                   }
-        
+            } catch (IOException | ClassNotFoundException ex) {
+                TA2.append("Det du ønsker at dekryptere eksisterer ikke.");
+            }
+
+        }
+
         String[] UserInput = TA1.getText().split(" ");
         TA2.setText(null);
-        
+
         //Udskriver dekrypteret data.
-        for(int i = 0; i < UserInput.length; i++)
-        {
+        for (int i = 0; i < UserInput.length; i++) {
             int value = Integer.parseInt(UserInput[i]);
-            
-            ValuesMap.forEach((k,v)-> {
-                if(v == value)
-                {
+
+            ValuesMap.forEach((k, v) -> {
+                if (v == value) {
                     TA2.append(k.toString());
                 }
-                                       });
+            });
         }
-    
+
     }//GEN-LAST:event_DekrypterActionPerformed
 
     private void ClrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClrActionPerformed
         // TODO add your handling code here:
         TA1.setText(null);
         TA2.setText(null);
+        TA3.setText(null);
     }//GEN-LAST:event_ClrActionPerformed
+
+    private void BrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrowseActionPerformed
+        try {
+            // TODO add your handling code here:
+            //Åbner sted hvor filerne bliver gemt, så man kan holde styr på filerne.
+            Desktop.getDesktop().open(new File(System.getProperty("user.dir")));
+            //Undtagelseshåndtering
+        } catch (IOException ex) {
+            Logger.getLogger(Frame1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BrowseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,13 +320,17 @@ public class Frame1 extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Browse;
     private javax.swing.JButton Clr;
     private javax.swing.JButton Dekrypter;
     private javax.swing.JButton Krypter;
     private javax.swing.JTextArea TA1;
     private javax.swing.JTextArea TA2;
+    private javax.swing.JTextArea TA3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
