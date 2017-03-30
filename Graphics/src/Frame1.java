@@ -33,6 +33,7 @@ public class Frame1 extends javax.swing.JFrame {
         EncryptedText = new ArrayList<>();
         
         TA2.setEditable(false);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,6 +56,7 @@ public class Frame1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Krypto");
+        setResizable(false);
 
         jLabel1.setText("Input:");
 
@@ -151,7 +153,7 @@ public class Frame1 extends javax.swing.JFrame {
             //Validerer at en angivet Char er en key i ValuesMap
             if(!ValuesMap.containsKey(UserInput.charAt(i)))
             {
-                //Tilegner værdier til Chars
+                //Tilegner tilfældige værdier til Chars i ValuesMap 
                 Random rand = new Random();
                 while(true)
                 {
@@ -202,24 +204,26 @@ public class Frame1 extends javax.swing.JFrame {
         
         if(encyptionTable.exists()){
             try {
+                //Se kommentar linje 185 og 187.
                 FileInputStream file = new FileInputStream(encyptionTable);
                 ObjectInputStream input = new ObjectInputStream(file);
                 
                 ValuesMap = (HashMap<Character, Integer>)input.readObject();
-                
+                //Se 191+192
                 input.close();
                 file.close();
-                
+                //Programmet håndterer potentielle undtagelser  for IO eller ClaassNotFound.
                 }catch(IOException | ClassNotFoundException ex){
+                 TA2.append("Det du ønsker at dekryptere eksisterer ikke.");
                 }
              
                 
                                    }
         
         String[] UserInput = TA1.getText().split(" ");
-        
-        
         TA2.setText(null);
+        
+        //Udskriver dekrypteret data.
         for(int i = 0; i < UserInput.length; i++)
         {
             int value = Integer.parseInt(UserInput[i]);
