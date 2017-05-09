@@ -6,7 +6,7 @@
 
 /**
  *
- * @author EUC
+ * @author LMT
  */
 import java.awt.Desktop;
 import java.io.File;
@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 public class Frame1 extends javax.swing.JFrame {
 
@@ -35,9 +37,7 @@ public class Frame1 extends javax.swing.JFrame {
         initComponents();
         ValuesMap = new HashMap<>();
         EncryptedText = new ArrayList<>();
-
         TA2.setEditable(false);
-
     }
 
     /**
@@ -62,6 +62,8 @@ public class Frame1 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TA3 = new javax.swing.JTextArea();
         Browse = new javax.swing.JButton();
+        Hlp = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Krypto");
@@ -113,67 +115,79 @@ public class Frame1 extends javax.swing.JFrame {
             }
         });
 
+        Hlp.setText("Hjælp");
+        Hlp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HlpActionPerformed(evt);
+            }
+        });
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel3))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(Krypter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Dekrypter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Clr)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Krypter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Dekrypter)
-                        .addGap(11, 11, 11)
-                        .addComponent(Clr)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addGap(30, 30, 30))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Browse)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(Hlp)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel1)
+                                .addGap(165, 165, 165)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Krypter)
                     .addComponent(Dekrypter)
                     .addComponent(Clr)
-                    .addComponent(Browse))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(Browse)
+                    .addComponent(Hlp))
+                .addGap(179, 179, 179))
         );
 
         pack();
@@ -244,7 +258,7 @@ public class Frame1 extends javax.swing.JFrame {
                 //Se 191+192
                 input.close();
                 file.close();
-                //Programmet håndterer potentielle undtagelser  for IO eller ClaassNotFound.
+                //Programmet håndterer potentielle undtagelser for IO eller ClaassNotFound.
             } catch (IOException | ClassNotFoundException ex) {
                 TA2.append("Det du ønsker at dekryptere eksisterer ikke.");
             }
@@ -258,11 +272,13 @@ public class Frame1 extends javax.swing.JFrame {
         for (int i = 0; i < UserInput.length; i++) {
             int value = Integer.parseInt(UserInput[i]);
 
+            // "->" Lambda udtryk: https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html - Anonym klasse uden navn, enkeltmetode: Behandler funktionalitet som metode argument.
             ValuesMap.forEach((k, v) -> {
                 if (v == value) {
                     TA2.append(k.toString());
                 }
-            });
+            }
+              );
         }
 
     }//GEN-LAST:event_DekrypterActionPerformed
@@ -284,6 +300,40 @@ public class Frame1 extends javax.swing.JFrame {
             Logger.getLogger(Frame1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BrowseActionPerformed
+
+    private void HlpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HlpActionPerformed
+        // TODO add your handling code here:
+        //Opretter en ny JFrame for brugervenlighed
+        JFrame HLPFIL = new JFrame("Hjælpefil");
+        HLPFIL.setVisible(true);
+        HLPFIL.setResizable(false);
+        HLPFIL.setSize(1280, 720);
+        HLPFIL.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        HLPFIL.setLocationRelativeTo(null);
+
+        JTextArea HLPAREA = new JTextArea();
+        HLPAREA.setWrapStyleWord(rootPaneCheckingEnabled);
+        HLPFIL.add(HLPAREA);
+        String HLPTXT;
+        HLPTXT = ("GENERELT: Programmet Krypto, er designet til at konvertere tekst til tal, for at kryptere ting så som kodeord.\n\n"
+                + " Forneden følger en forklaring på de forskellige brugerfelter tilgængelige i programmet.\n\n"
+                + "1. Input-feltet, angivet med teksten 'Input,' bruges til at skrive den tekst du ønsker at kryptere eller dekryptere.\n"
+                + "2. Output-feltet, angivet med teksten 'Output,' er der hvor den krypterede eller dekrypterede tekst bliver fremvist.\n"
+                + "3.Lager feltet, angivet med teksten Navngiv/Vælg fil, anvendes til to formål.\n"
+                + "- Når du anvender 'Krypter' knappen vil programmet gemme en krypteret fil med information om den krypterede tekst som du har modtaget i outputfeltet.\n"
+                + "- Det du skriver i feltet afgører hvilket navn filen har.\n"
+                + "- Når du anvender 'Dekrypter' knappen, vil filen bruge den tekst du har sat i lager feltet.\n"
+                + "- Det du skriver i feltet bruges til at finde den fil der indeholder den information du skal bruge til at få den tekst du har krypteret tilbage i ikke krypteret form.\n\n"
+                + "Forneden følger en forklaring på de forskellige knapper tilgængelig i programmet.\n\n"
+                + "1. 'Krypter' knappen bruges til at kryptere den tekst som på pågældende tispunkt står i Input-feltet.\n"
+                + "2. 'Dekrypter' knappen bruges til at dekryptere den tekst som er gemt i den valgte fil og skriver det i output-feltet.\n"
+                + "3. 'Ryd' knappen bruges til at fjerne alt teksten fra alle tekstfelter.\n"
+                + "4. 'Se Filer' knappen bruges til at åbne det sted hvor de krypterede datafiler ligger.\n"
+                + "5. 'Hjælp' knappen viser den information du kan læse om her frem./n");
+        HLPAREA.append(HLPTXT);
+
+
+    }//GEN-LAST:event_HlpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,6 +373,7 @@ public class Frame1 extends javax.swing.JFrame {
     private javax.swing.JButton Browse;
     private javax.swing.JButton Clr;
     private javax.swing.JButton Dekrypter;
+    private javax.swing.JButton Hlp;
     private javax.swing.JButton Krypter;
     private javax.swing.JTextArea TA1;
     private javax.swing.JTextArea TA2;
@@ -330,6 +381,7 @@ public class Frame1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

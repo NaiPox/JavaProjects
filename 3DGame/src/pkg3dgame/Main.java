@@ -22,14 +22,17 @@ public class Main extends Canvas implements Runnable {
      * @param args the command line arguments
      */
     private Thread thread;
-    private boolean running = false;
+    public boolean running = false;
     
-    private void start() {
+    private void  start() {
+        
         if (running) {
-            return;
             running = true;
             thread = new Thread(this);
             thread.start();
+            
+        
+            
         }
     }
     
@@ -51,7 +54,6 @@ public class Main extends Canvas implements Runnable {
     
     private void stop() {
         if (!running) {
-            return;
             running = false;
             try {
                 thread.join();
